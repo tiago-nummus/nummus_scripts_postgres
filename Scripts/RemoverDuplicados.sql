@@ -9,8 +9,8 @@ WHERE e.fantasia ILIKE '%%';
 SELECT count(c.created_at) AS created_at_count, c.empresa_id, c.created_at, c.valor_compra, c.cliente_id
 FROM cashbacks c
 WHERE c.empresa_id IN ('')
-    AND c.dh_lancamento::date > '2024-01-01'
-    AND c.tipo_cashback = 'NORMAL'
+    AND c.dh_lancamento::date > ''
+    AND c.tipo_cashback = ''
     AND c.cancelado IS NOT NULL
 GROUP BY
 c.empresa_id, c.cliente_id, c.created_at, c.valor_compra
