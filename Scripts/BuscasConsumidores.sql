@@ -20,10 +20,10 @@ FROM cliente_empresas ce
     e.id = ce.empresa_id
          LEFT JOIN CASHBACKS C2 ON
     c.id = c2.cliente_id
-WHERE ce.id IN ('')
--- OR ce.nome ILIKE '%%'
+WHERE c.id IN ('0')
+--    OR ce.nome ILIKE '%%'
 --    OR ce.cpf_cnpj ILIKE '%%'
---    OR ce.telefone ILIKE '%%'
+   OR ce.telefone ILIKE '%%'
 GROUP BY e.id, c.id, ce.empresa_id, e.fantasia, ce.apelido, ce.nome, ce.cpf_cnpj, ce.telefone, ce.email, ce.whatsapp
 ORDER BY ce.EMPRESA_ID;
 
@@ -40,13 +40,14 @@ ORDER BY ce.empresa_id DESC;
 
 SELECT c.*
 FROM clientes c
-WHERE c.id = '0'
-   OR c.telefone ILIKE '$$'
+WHERE c.id = ''
+--    OR c.telefone ILIKE '%%'
+--    OR c.cpf_cnpj ILIKE '%%'
 ORDER BY c.id asc;
 
 SELECT *
 FROM cliente_empresas ce
-WHERE ce.id = '';
+WHERE ce.cliente_id = '';
 
 UPDATE clientes c
 SET telefone = NULL

@@ -26,4 +26,4 @@ WHERE m.message_queue NOTNULL
   AND (mc.situacao = 'PROCESSANDO'
     OR mc.situacao IS NULL)
 GROUP BY m.message_queue, m.message_group_id, m.uuid
-ORDER BY message_queue, message_group_id, updated_at ASC
+ORDER BY message_queue, message_group_id, updated_at ASC;

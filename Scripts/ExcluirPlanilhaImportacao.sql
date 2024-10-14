@@ -70,7 +70,7 @@ SELECT r.*
 FROM resgates r
 WHERE r.cashback_origin_id IN (SELECT c.id
                                FROM cashbacks c
-                               WHERE c.uuid_importacao = '')
+                               WHERE c.uuid_importacao = '');
 
 -- ENCONTRAR OS BALANCES DOS CASHBACKS IMPORTADOS
 --CREATE TABLE tkxxxx_bpk_resgates AS -- BACKUP
@@ -78,7 +78,7 @@ SELECT b.*
 FROM balance b
 WHERE b.idcashback IN (SELECT c.id
                        FROM cashbacks c
-                       WHERE c.uuid_importacao = '')
+                       WHERE c.uuid_importacao = '');
 
 
 -- ENCONTRAR OS CLIENTES EMPRESAS RELACIONADOS DOS CASHBACKS IMPORTADOS

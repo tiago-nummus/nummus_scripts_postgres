@@ -9,4 +9,4 @@ FROM cliente_empresas ce
 /*LEFT JOIN cliente_ecommerce ce2 ON
 ce.cliente_id = ce2.cliente_id*/
 WHERE ce.empresa_id = ''
-ORDER BY c.nome
+ORDER BY c.nome;

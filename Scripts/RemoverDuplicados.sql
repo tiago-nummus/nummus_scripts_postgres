@@ -3,7 +3,6 @@ FROM empresas e
 WHERE e.fantasia ILIKE '%%';
 
 
-
 SELECT count(c.created_at) AS created_at_count, c.empresa_id, c.created_at, c.valor_compra, c.cliente_id
 FROM cashbacks c
 WHERE c.empresa_id IN ('')
@@ -54,10 +53,9 @@ FROM cashback_items ci
          JOIN cliente_empresas ce ON
     c.cliente_id = ce.cliente_id
 WHERE c.tipo_cashback = 'BONUS'
-  AND (
-          c.dh_lancamento + (
-              ci.validade || 'days'
-              )::INTERVAL
+  AND (c.dh_lancamento + (
+    ci.validade || 'days'
+    )::INTERVAL
           )::date >= current_date
   AND ci.valor_compra = '0'
   AND ci.valor_cashback > '0'
