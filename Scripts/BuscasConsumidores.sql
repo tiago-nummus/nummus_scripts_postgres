@@ -21,9 +21,9 @@ FROM cliente_empresas ce
          LEFT JOIN CASHBACKS C2 ON
     c.id = c2.cliente_id
 WHERE c.id IN ('0')
---    OR ce.nome ILIKE '%%'
+   OR ce.nome ILIKE '%%'
 --    OR ce.cpf_cnpj ILIKE '%%'
-   OR ce.telefone ILIKE '%%'
+--    OR ce.telefone ILIKE '%%'
 GROUP BY e.id, c.id, ce.empresa_id, e.fantasia, ce.apelido, ce.nome, ce.cpf_cnpj, ce.telefone, ce.email, ce.whatsapp
 ORDER BY ce.EMPRESA_ID;
 
@@ -77,3 +77,9 @@ WHERE ci.cashback_id = '';
 SELECT *
 FROM empresas_config_automacao eca
 WHERE eca.empresa_id = '';
+
+-- AJUSTAR SALDO DE CLIENTE NA EMPRESA
+SELECT reset_balance('', '');
+
+-- CONSULTAR O VALOR CORRETO DO SALDO DO CLIENTE NA EMPRESA
+SELECT amount_customer('', '');
