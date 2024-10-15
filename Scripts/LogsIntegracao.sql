@@ -14,10 +14,9 @@ SELECT lr.x_client_id                    AS "xClientID",
        (lr.requisicao ->> 'body')::jsonb AS "Requisição",
        lr.resposta                       AS "Resposta"
 FROM log_requisicao lr
-WHERE lr.x_client_id IN ('8b9ec7e178')
+WHERE lr.x_client_id IN ('')
 --   AND lr.created_at::date BETWEEN '2024-10-01' AND '2024-10-05'
-  AND lr.created_at::text ilike '2024-10-11%'
---   AND lr.requisicao::TEXT ILIKE '%%'
+  AND lr.created_at::text ilike '2024-10-15%'
 --   AND lr.requisicao::TEXT ILIKE '%%'
 --   AND lr.resposta::TEXT ILIKE '%%'
 --   AND lr.rota = '/cashback'

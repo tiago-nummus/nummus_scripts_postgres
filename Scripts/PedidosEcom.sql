@@ -65,7 +65,7 @@ WHERE ci.cashback_id IN (SELECT c.id
                          FROM cashbacks c
                          WHERE c.empresa_id = ''
                            AND c.cliente_id = ''
-                           AND c.id in ('', '', '')
+--                            AND c.id in ('', '', '')
 --AND ci.VALUE_RESGATADO > ci.VALOR_CASHBACK
 )
 --   and ci.value_resgatado > ci.valor_cashback

@@ -17,7 +17,7 @@ WHERE cli.id = '0'
 --OR c.email IS NOT NULL
   AND ci.value_resgatado < ci.valor_cashback
   AND c.situacao_cashback != 'CANCELADO'
-GROUP BY e.fantasia
+GROUP BY e.fantasia;
 
 
 -- CALCULAR SALDO EM TODAS AS EMPRESAS
@@ -32,4 +32,4 @@ FROM clientes c
     ce.cliente_id = c.id
          INNER JOIN empresas e ON
     ce.empresa_id = e.id
-WHERE c.id = '0'
+WHERE c.id = '0';
