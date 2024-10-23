@@ -21,8 +21,9 @@ FROM cliente_empresas ce
          LEFT JOIN CASHBACKS C2 ON
     c.id = c2.cliente_id
 WHERE c.id IN ('0')
-   OR ce.nome ILIKE '%%'
---    OR ce.cpf_cnpj ILIKE '%%'
+--     AND ce.empresa_id = ''
+--    OR ce.nome ILIKE '%%'
+   OR ce.cpf_cnpj ILIKE '%%'
 --    OR ce.telefone ILIKE '%%'
 GROUP BY e.id, c.id, ce.empresa_id, e.fantasia, ce.apelido, ce.nome, ce.cpf_cnpj, ce.telefone, ce.email, ce.whatsapp
 ORDER BY ce.EMPRESA_ID;
@@ -30,6 +31,10 @@ ORDER BY ce.EMPRESA_ID;
 SELECT *
 FROM empresas e
 WHERE e."database" = '';
+
+SELECT *
+FROM empresas e
+WHERE e.fantasia ilike '%%';
 
 SELECT *
 FROM cliente_empresas ce
@@ -40,22 +45,23 @@ ORDER BY ce.empresa_id DESC;
 
 SELECT c.*
 FROM clientes c
-WHERE c.id = ''
+WHERE c.id = '0'
 --    OR c.telefone ILIKE '%%'
 --    OR c.cpf_cnpj ILIKE '%%'
-ORDER BY c.id asc;
+ORDER BY c.id;
 
 SELECT *
 FROM cliente_empresas ce
-WHERE ce.cliente_id = '';
+WHERE ce.cliente_id in ('');
 
-UPDATE clientes c
+
+UPDATE cliente_empresas ce
 SET telefone = NULL
-WHERE C.telefone IN ('');
+WHERE ce.cliente_id IN ('');
 
 DELETE
 FROM cliente_empresas ce
-WHERE ce.empresa_id IN ('', '')
+WHERE ce.empresa_id IN ('')
   AND ce.cliente_id = '';
 
 SELECT ce.*

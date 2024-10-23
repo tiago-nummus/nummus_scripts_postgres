@@ -13,9 +13,8 @@ FROM marketing_cliente mc
 WHERE mc.uuid_marketing = '';
 
 
-SELECT m."uuid",
-       m.
-           FROM MARKETING M
+SELECT m."uuid"
+FROM MARKETING M
 WHERE m.created_at::date = '2024-10-04'
   AND m.id_empresa IN ('');
 
@@ -36,8 +35,7 @@ SET mensagem_erro         = 'Reprocessar mensagem',
     mensagem_reprocessada = FALSE
 WHERE mc.uuid_marketing IN (SELECT m."uuid"
                             FROM MARKETING M
-                            WHERE m.id_empresa IN ('')
-                              AND m."uuid" = '')
+                            WHERE m."uuid" = '')
   AND mc.situacao = 'PROCESSANDO'
   AND mc.mensagem_reprocessada = FALSE
   AND mc.mensagem_erro IS NULL

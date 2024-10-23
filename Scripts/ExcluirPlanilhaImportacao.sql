@@ -36,7 +36,7 @@ WHERE ail.uuid_importacao = '';
 --CREATE TABLE tkxxxx_bpk_auditoria_importacao_log AS -- BACKUP
 SELECT ail.corpo -> 'customer' ->> 'document_number'
 FROM auditoria_importacao_log ail
-WHERE ail.uuid_importacao = '';
+WHERE ail.uuid_importacao = ''
 
 
 -- ENCONTRAR OS CASHBACKS IMPORTADOS

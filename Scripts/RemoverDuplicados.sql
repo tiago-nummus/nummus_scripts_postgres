@@ -21,7 +21,7 @@ WHERE c.empresa_id IN ('')
   AND c.created_at::date IN ('')
   AND c.valor_compra IN ('')
   AND c.cancelado IS NOT NULL
-ORDER BY c.id ASC
+ORDER BY c.id
 ;
 
 

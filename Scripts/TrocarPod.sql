@@ -17,7 +17,7 @@ FROM whatsapp_host wh
          INNER JOIN whatsapp_host_conexao whc ON
     wh.id = whc.id_whatsapp_host
 GROUP BY wh.id
-ORDER BY total_pod ASC;
+ORDER BY total_pod;
 
 -- ENCONTRAR APENAS O ID DA POD COM MENOR QTDE DE CLIENTES
 SELECT wh.id
@@ -25,7 +25,7 @@ FROM whatsapp_host wh
          INNER JOIN whatsapp_host_conexao whc ON
     wh.id = whc.id_whatsapp_host
 GROUP BY wh.id
-ORDER BY COUNT(whc.id_whatsapp_host) ASC
+ORDER BY COUNT(whc.id_whatsapp_host)
 LIMIT 1;
 
 -- Trocar pods de uma empresa
@@ -35,7 +35,7 @@ SET id_whatsapp_host = (SELECT wh.id
                                  INNER JOIN whatsapp_host_conexao whc ON
                             wh.id = whc.id_whatsapp_host
                         GROUP BY wh.id
-                        ORDER BY COUNT(whc.id_whatsapp_host) ASC
+                        ORDER BY COUNT(whc.id_whatsapp_host)
                         LIMIT 1)
 WHERE slug_empresa IN ('');
 
@@ -44,7 +44,7 @@ SELECT whc.slug_empresa, whc.status, wh.dh_operacao, wh.server_url, whc.updated_
 FROM whatsapp_host wh
          INNER JOIN whatsapp_host_conexao whc ON
     wh.id = whc.id_whatsapp_host
-WHERE wh.id IN ('55');
+WHERE wh.id IN ('');
 
 SELECT w.*
 FROM whatsappofficialconfigurationaccount w;
@@ -58,9 +58,7 @@ WHERE NOT EXISTS (SELECT 1
 
 -- quantidade de clientes conectados no momento
 SELECT CASE
-           WHEN CURRENT_TIME BETWEEN '05:00:00' AND '23:00:00' THEN CEIL(
-                   count(uuid)::decimal
-                                                                    )
+           WHEN CURRENT_TIME BETWEEN '05:00:00' AND '23:00:00' THEN CEIL(count(uuid)::decimal)
            ELSE 0
            END
 FROM sessao_whatsapp;

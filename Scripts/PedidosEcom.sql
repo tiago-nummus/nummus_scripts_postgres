@@ -3,10 +3,10 @@
 -- DADOS DA EMPRESA E INTEGRAÇÃO
 SELECT *
 FROM empresas e
-WHERE e.fantasia = ''
+WHERE e.fantasia ilike '%%'
 --    OR e.id = '0'
    or e.database = ''
-ORDER BY e.fantasia ASC;
+ORDER BY e.fantasia;
 
 SELECT ew.*
 FROM empresas_webhooks ew
@@ -21,7 +21,7 @@ WHERE cec.codigo_cupom ILIKE '%%';
 SELECT *
 FROM cupom_ecommerce_cliente cec
 WHERE cec.cliente_id = ''
-ORDER BY cec.UPDATED_AT ASC;
+ORDER BY cec.UPDATED_AT DESC;
 
 -- ENCONTRAR CADASTRO DO CLIENTE_ECOMMERCE NA NUMMUS
 SELECT *
@@ -29,33 +29,24 @@ FROM cliente_ecommerce ce
 WHERE ce.cliente_id = '';
 
 -- PARA CONSULTA/EDIÇÃO DOS REGISTROS;
--- ENCONTRAR PEDIDO COM CASHBACK DO CLIENTE
-SELECT c.*
-FROM cashbacks c
-WHERE c.empresa_id = ''
-  AND c.cliente_id = ''
-/*AND c.ecommerce_pedido_id = encode(
-      ''::bytea, 'base64'
-                            )*/;
-
-SELECT ci.*
-FROM cashback_items ci
-WHERE ci.cashback_id IN (SELECT c.id
-                         FROM CASHBACKS C
-                         WHERE c.empresa_id = ''
-                           AND c.ecommerce_pedido_id = encode(
-                                 ''::bytea, 'base64'
-                                                       ))
-ORDER BY ci.created_at DESC;
+-- ENCONTRAR PEDIDO PELO CÓDIGO ECOMMERCE
+select c.*
+from cashbacks c
+where c.ecommerce_pedido_id = encode(
+        ''::bytea, 'base64');
 
 -- ENCONTRAR TODOS OS CASHBACK DO CLIENTE
 
+-- "id": 5543760,
+-- "valor_compra": "89.90",
+-- "cliente_id": 100296,
+-- "empresa_id": 2876,
+
 SELECT c.*
 FROM cashbacks c
 WHERE c.empresa_id = ''
   AND c.cliente_id = ''
---   AND c.id in ('')
---   and c.valor_resgatado > c.valor_cashback
+  and c.id = ''
 ORDER BY c.created_at DESC;
 
 -- CONSULTA DE TODOS OS ITENS DE CASHBACK DO CLIENTE
@@ -64,11 +55,7 @@ FROM cashback_items ci
 WHERE ci.cashback_id IN (SELECT c.id
                          FROM cashbacks c
                          WHERE c.empresa_id = ''
-                           AND c.cliente_id = ''
---                            AND c.id in ('', '', '')
---AND ci.VALUE_RESGATADO > ci.VALOR_CASHBACK
-)
---   and ci.value_resgatado > ci.valor_cashback
+                           AND c.cliente_id = '')
 ORDER BY ci.created_at DESC;
 
 -- AJUSTAR SALDO DE CLIENTE NA EMPRESA
@@ -77,6 +64,7 @@ SELECT reset_balance('', '');
 -- CONSULTAR O VALOR CORRETO DO SALDO DO CLIENTE NA EMPRESA
 SELECT amount_customer('', '');
 
+-- CONSULTAR OS ITENS DISPONÍVEIS EM BALANCE
 SELECT b.*
 FROM balance b
 WHERE b.idcustomer = ''
@@ -96,16 +84,10 @@ WHERE cm.id_cashback IN (SELECT c.id
 -- ENCONTRAR RESGATES REALIZADOS
 SELECT r.*
 FROM resgates r
-WHERE r.cashback_resgatado_id IN (SELECT c.id
-                                  FROM cashbacks c
-                                  WHERE c.empresa_id = ''
-                                    AND c.cliente_id = ''
-                                    AND c.id = ''
-                                  ORDER BY c.dh_lancamento ASC)
-   OR r.cashback_origin_id IN (SELECT c.id
+WHERE r.cashback_origin_id IN (SELECT c.id
                                FROM cashbacks c
                                WHERE c.empresa_id = ''
                                  AND c.cliente_id = ''
                                  AND c.id = ''
-                               ORDER BY c.dh_lancamento ASC)
+                               ORDER BY c.dh_lancamento DESC)
 ;
