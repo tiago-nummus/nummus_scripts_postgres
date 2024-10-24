@@ -35,12 +35,8 @@ from cashbacks c
 where c.ecommerce_pedido_id = encode(
         ''::bytea, 'base64');
 
--- ENCONTRAR TODOS OS CASHBACK DO CLIENTE
 
--- "id": 5543760,
--- "valor_compra": "89.90",
--- "cliente_id": 100296,
--- "empresa_id": 2876,
+-- ENCONTRAR TODOS OS CASHBACK DO CLIENTE
 
 SELECT c.*
 FROM cashbacks c
