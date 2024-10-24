@@ -23,8 +23,8 @@ FROM cliente_empresas ce
 WHERE c.id IN ('0')
 --     AND ce.empresa_id = ''
 --    OR ce.nome ILIKE '%%'
-   OR ce.cpf_cnpj ILIKE '%%'
---    OR ce.telefone ILIKE '%%'
+--    OR ce.cpf_cnpj ILIKE '%%'
+   OR ce.telefone ILIKE '%%'
 GROUP BY e.id, c.id, ce.empresa_id, e.fantasia, ce.apelido, ce.nome, ce.cpf_cnpj, ce.telefone, ce.email, ce.whatsapp
 ORDER BY ce.EMPRESA_ID;
 

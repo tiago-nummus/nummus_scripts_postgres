@@ -1,4 +1,4 @@
--- Dados do cliente: 1152,SILVER CROWN,40538359000131,bf8a5f48c1
+-- Dados do cliente:
 
 SELECT lr.x_client_id                    AS "xClientID",
        lr.rota                           AS "Rota",
@@ -6,12 +6,12 @@ SELECT lr.x_client_id                    AS "xClientID",
        (lr.requisicao ->> 'body')::jsonb AS "Requisição",
        lr.resposta                       AS "Resposta"
 FROM log_requisicao lr
-WHERE lr.x_client_id IN ('bf8a5f48c1')
---   AND lr.created_at::date BETWEEN '2024-10-15' AND '2024-10-21'
-  AND lr.created_at::text ilike '2024-10-23%'
---   AND lr.requisicao::TEXT ILIKE '%%'
-  AND lr.resposta::TEXT ILIKE '%%'
-  AND lr.rota = '/cashback'
+WHERE lr.x_client_id IN ('')
+--   AND lr.created_at::date BETWEEN '2024-10-22' AND '2024-10-23'
+--   AND lr.created_at::text ilike '2024-10-24%'
+--   AND lr.requisicao::TEXT ILIKE '%%
+--   AND lr.resposta::TEXT ILIKE '%%'
+--   AND lr.rota = '/cashback'
 --   AND lr.rota = '/ecommerce/v1/api/nuvemshop/start-process'
 --   AND lr.rota = '/customer'
 --   AND lr.rota = '/cashback/{id}/cancel'
