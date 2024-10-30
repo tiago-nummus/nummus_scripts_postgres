@@ -24,7 +24,7 @@ WHERE c.id IN ('0')
 --     AND ce.empresa_id = ''
 --    OR ce.nome ILIKE '%%'
 --    OR ce.cpf_cnpj ILIKE '%%'
-   OR ce.telefone ILIKE '%%'
+   OR ce.telefone ILIKE '%22997285750%'
 GROUP BY e.id, c.id, ce.empresa_id, e.fantasia, ce.apelido, ce.nome, ce.cpf_cnpj, ce.telefone, ce.email, ce.whatsapp
 ORDER BY ce.EMPRESA_ID;
 
@@ -38,16 +38,16 @@ WHERE e.fantasia ilike '%%';
 
 SELECT *
 FROM cliente_empresas ce
-WHERE ce.cliente_id = '0'
-   OR ce.cpf_cnpj ILIKE '$$'
-   OR ce.telefone ILIKE '$$'
+WHERE ce.cliente_id = ''
+   OR ce.cpf_cnpj ILIKE '%%'
+   OR ce.telefone ILIKE '%%'
 ORDER BY ce.empresa_id DESC;
 
 SELECT c.*
 FROM clientes c
 WHERE c.id = '0'
 --    OR c.telefone ILIKE '%%'
---    OR c.cpf_cnpj ILIKE '%%'
+   OR c.cpf_cnpj ILIKE '%12008767760%'
 ORDER BY c.id;
 
 SELECT *
@@ -89,3 +89,16 @@ SELECT reset_balance('', '');
 
 -- CONSULTAR O VALOR CORRETO DO SALDO DO CLIENTE NA EMPRESA
 SELECT amount_customer('', '');
+
+
+select ci.*
+from cashbacks c
+         inner join cashback_items ci on c.id = ci.cashback_id
+where c.empresa_id = '2568'
+  and c.cliente_id = '2897342'
+  and c.id not in ('5677661', '5665253')
+order by c.created_at desc;
+
+select *
+from balance b
+where idcashback in ('5535139');

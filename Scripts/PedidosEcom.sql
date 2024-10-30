@@ -1,11 +1,11 @@
--- Dados do cliente:
+-- Dados do cliente: 4089151,2831,ZOOLOJA PRINCESA,3,NAYARA LAURINDO (FUNCIONARIA),NAYARA,15276181705,22997285750
 
 -- DADOS DA EMPRESA E INTEGRAÇÃO
 SELECT *
 FROM empresas e
 WHERE e.fantasia ilike '%%'
 --    OR e.id = '0'
-   or e.database = ''
+--    or e.database = ''
 ORDER BY e.fantasia;
 
 SELECT ew.*
@@ -40,9 +40,9 @@ where c.ecommerce_pedido_id = encode(
 
 SELECT c.*
 FROM cashbacks c
-WHERE c.empresa_id = ''
-  AND c.cliente_id = ''
-  and c.id = ''
+WHERE c.empresa_id = '2831'
+  AND c.cliente_id = '4089151'
+  and c.id = '5648146'
 ORDER BY c.created_at DESC;
 
 -- CONSULTA DE TODOS OS ITENS DE CASHBACK DO CLIENTE
@@ -50,8 +50,9 @@ SELECT ci.*
 FROM cashback_items ci
 WHERE ci.cashback_id IN (SELECT c.id
                          FROM cashbacks c
-                         WHERE c.empresa_id = ''
-                           AND c.cliente_id = '')
+                         WHERE c.empresa_id = '2831'
+                           AND c.cliente_id = '4089151'
+                           and c.id = '5648146')
 ORDER BY ci.created_at DESC;
 
 -- AJUSTAR SALDO DE CLIENTE NA EMPRESA
@@ -64,7 +65,7 @@ SELECT amount_customer('', '');
 SELECT b.*
 FROM balance b
 WHERE b.idcustomer = ''
-  AND b.idcashback = ''
+--   AND b.idcashback = ''
   AND b.idcompany = '';
 
 -- ENCONTRAR REGISTROS DE MARKETING DAS TRANSAÇÕES

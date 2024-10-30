@@ -1,7 +1,7 @@
 -- ENCONTRAR A EMPRESA PELO NOME
 select *
 from empresas e
-where e.fantasia ilike '%TERRA DA ALEGRIA %';
+where e.fantasia ilike '%%';
 
 
 -- GERAR LISTAGEM DE CLIENTES PARA EXPORTAR

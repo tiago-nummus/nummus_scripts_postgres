@@ -1,21 +1,34 @@
--- Função para recalcular os saldos de vários clientes de uma empresa
 DO
 $$
     DECLARE
-        id_customer_array integer[]; -- Array preenchido pela subquery
+        id_customer_array integer[]; -- Array para armazenar os IDs dos clientes
         id_customer       integer;
-        id_company        integer := ''; -- Id fixo da empresa
+        id_company_array  integer[]; -- Array para armazenar os IDs das empresas
+        id_company        integer;
+        company_name      varchar := ''; -- Nome da empresa a ser buscada
     BEGIN
-        -- A subquery seleciona apenas os clientes ativos
-        id_customer_array := ARRAY(select ce.cliente_id
-                                   from cliente_empresas ce
-                                   WHERE ce.empresa_id = id_company);
+        -- Preenche o array de empresas ativas com base no nome da empresa
+        id_company_array := ARRAY(
+                SELECT e.id
+                FROM empresas e
+                WHERE e.fantasia ILIKE '%' || company_name || '%');
 
-        -- Itera sobre o array gerado pela subquery
-        FOREACH id_customer IN ARRAY id_customer_array
+        -- Itera sobre o array de empresas
+        FOREACH id_company IN ARRAY id_company_array
             LOOP
-                -- Chama a função reset_balance para cada id_customer
-                PERFORM reset_balance(id_customer, id_company);
+                -- Preenche o array de clientes ativos para cada empresa
+                id_customer_array := ARRAY(
+                        SELECT ce.cliente_id
+                        FROM cliente_empresas ce
+                        WHERE ce.empresa_id = id_company);
+
+                -- Itera sobre o array de clientes e recalcula o saldo
+                FOREACH id_customer IN ARRAY id_customer_array
+                    LOOP
+                        -- Chama a função reset_balance para cada id_customer e id_company
+                        PERFORM reset_balance(id_customer, id_company);
+                    END LOOP;
             END LOOP;
+
     END
 $$;
