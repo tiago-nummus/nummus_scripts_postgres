@@ -48,6 +48,7 @@ script*.sql
 tk*.sql
 TK*.sql
 .dbeaver
+Tickets/
 
 #############
 ## Windows detritus

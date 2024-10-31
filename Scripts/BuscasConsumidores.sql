@@ -24,7 +24,7 @@ WHERE c.id IN ('0')
 --     AND ce.empresa_id = ''
 --    OR ce.nome ILIKE '%%'
 --    OR ce.cpf_cnpj ILIKE '%%'
-   OR ce.telefone ILIKE '%22997285750%'
+   OR ce.telefone ILIKE '%%'
 GROUP BY e.id, c.id, ce.empresa_id, e.fantasia, ce.apelido, ce.nome, ce.cpf_cnpj, ce.telefone, ce.email, ce.whatsapp
 ORDER BY ce.EMPRESA_ID;
 
@@ -47,7 +47,7 @@ SELECT c.*
 FROM clientes c
 WHERE c.id = '0'
 --    OR c.telefone ILIKE '%%'
-   OR c.cpf_cnpj ILIKE '%12008767760%'
+   OR c.cpf_cnpj ILIKE '%%'
 ORDER BY c.id;
 
 SELECT *
@@ -91,14 +91,16 @@ SELECT reset_balance('', '');
 SELECT amount_customer('', '');
 
 
-select ci.*
+select c.*
 from cashbacks c
          inner join cashback_items ci on c.id = ci.cashback_id
-where c.empresa_id = '2568'
-  and c.cliente_id = '2897342'
-  and c.id not in ('5677661', '5665253')
+where c.empresa_id = ''
+  and c.cliente_id = ''
+  and c.id not in ('', '')
 order by c.created_at desc;
 
 select *
 from balance b
-where idcashback in ('5535139');
+where idcashback in ('');
+
+

@@ -1,4 +1,4 @@
--- Dados do cliente: 4089151,2831,ZOOLOJA PRINCESA,3,NAYARA LAURINDO (FUNCIONARIA),NAYARA,15276181705,22997285750
+-- Dados do cliente:
 
 -- DADOS DA EMPRESA E INTEGRAÇÃO
 SELECT *
@@ -21,7 +21,7 @@ WHERE cec.codigo_cupom ILIKE '%%';
 SELECT *
 FROM cupom_ecommerce_cliente cec
 WHERE cec.cliente_id = ''
-ORDER BY cec.UPDATED_AT DESC;
+ORDER BY cec.created_at;
 
 -- ENCONTRAR CADASTRO DO CLIENTE_ECOMMERCE NA NUMMUS
 SELECT *
@@ -40,9 +40,9 @@ where c.ecommerce_pedido_id = encode(
 
 SELECT c.*
 FROM cashbacks c
-WHERE c.empresa_id = '2831'
-  AND c.cliente_id = '4089151'
-  and c.id = '5648146'
+WHERE c.empresa_id = ''
+  AND c.cliente_id = ''
+  and c.id = ''
 ORDER BY c.created_at DESC;
 
 -- CONSULTA DE TODOS OS ITENS DE CASHBACK DO CLIENTE
@@ -50,9 +50,9 @@ SELECT ci.*
 FROM cashback_items ci
 WHERE ci.cashback_id IN (SELECT c.id
                          FROM cashbacks c
-                         WHERE c.empresa_id = '2831'
-                           AND c.cliente_id = '4089151'
-                           and c.id = '5648146')
+                         WHERE c.empresa_id = ''
+                           AND c.cliente_id = ''
+                           and c.id = '')
 ORDER BY ci.created_at DESC;
 
 -- AJUSTAR SALDO DE CLIENTE NA EMPRESA
